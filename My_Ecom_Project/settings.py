@@ -93,8 +93,11 @@ WSGI_APPLICATION = 'My_Ecom_Project.wsgi.application'
 #         'HOST':'localhost',
 #     }
 # }
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES = {
+	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES["default"] = dj_database_url.parse(database_url)
 # DATABASES ["default"] = dj_database_url.parse("postgres://e_commerce_5ut4_user:LHetl6sw88o9DKJ7CqGMFFIhdIuVWcwh@dpg-cn80k621hbls73d84jcg-a.oregon-postgres.render.com/e_commerce_5ut4")
 
 
