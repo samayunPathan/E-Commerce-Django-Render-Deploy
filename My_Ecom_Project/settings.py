@@ -84,14 +84,14 @@ WSGI_APPLICATION = 'My_Ecom_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'E_Commerce',
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost',
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': 'E_Commerce',
+#         'USER':'postgres',
+#         'PASSWORD':'1234',
+#         'HOST':'localhost',
+#     }
 }
 database_url = os.environ.get("DATABASE_URL")
 DATABASES["default"] = dj_database_url.parse(database_url)
