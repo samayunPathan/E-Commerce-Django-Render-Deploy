@@ -12,12 +12,20 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_b8g@^^78wh3k*0@4tnqgul*z7x(07i9ueji)=0i(fu4yu@3!^'
+# SECRET_KEY = '_b8g@^^78wh3k*0@4tnqgul*z7x(07i9ueji)=0i(fu4yu@3!^'
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -85,8 +93,9 @@ DATABASES = {
         'HOST':'localhost',
     }
 }
-
-DATABASES ["default"] = dj_database_url.parse("postgres://e_commerce_5ut4_user:LHetl6sw88o9DKJ7CqGMFFIhdIuVWcwh@dpg-cn80k621hbls73d84jcg-a.oregon-postgres.render.com/e_commerce_5ut4")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES ["default"] = dj_database_url.parse("postgres://e_commerce_5ut4_user:LHetl6sw88o9DKJ7CqGMFFIhdIuVWcwh@dpg-cn80k621hbls73d84jcg-a.oregon-postgres.render.com/e_commerce_5ut4")
 
 
 
