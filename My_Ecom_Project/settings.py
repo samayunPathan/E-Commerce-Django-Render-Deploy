@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -93,11 +93,17 @@ WSGI_APPLICATION = 'My_Ecom_Project.wsgi.application'
 #         'HOST':'localhost',
 #     }
 # }
+# DATABASES = {
+# 	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
 DATABASES = {
-	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
-# database_url = os.environ.get("DATABASE_URL")
-# DATABASES["default"] = dj_database_url.parse(database_url)
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 # DATABASES ["default"] = dj_database_url.parse("postgres://e_commerce_5ut4_user:LHetl6sw88o9DKJ7CqGMFFIhdIuVWcwh@dpg-cn80k621hbls73d84jcg-a.oregon-postgres.render.com/e_commerce_5ut4")
 
 
